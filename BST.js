@@ -8,24 +8,24 @@ class Node {
 
 class Tree{
     constructor(Arr) {
-        this.root = this.BuildTree(Arr)
+        this.root = this.buildTree(arr, 0, arr.length-1);
     }
     
-    sortedArr(Arr) {
+    sortedArr(arr) {
         let sortedArr = [];
 
-        while(Arr.length > 0) {
-            let smallest = Arr[0]
+        while(arr.length > 0) {
+            let smallest = arr[0]
             let smallestIndex = 0;
 
-            for(let index = 1; index < Arr.length; index++) {
-                if(Arr[index] < smallest) {
-                    smallest = Arr[index];
+            for(let index = 1; index < arr.length; index++) {
+                if(arr[index] < smallest) {
+                    smallest = arr[index];
                     smallestIndex = index;
                 }
             }
             // remove smallest element from original array 
-            Arr.splice(smallestIndex, 1);
+            arr.splice(smallestIndex, 1);
             //push the smallest element to sorted arr 
             sortedArr.push(smallest)
         }
@@ -37,15 +37,20 @@ class Tree{
         return Array.from(new Set(arr));
     }
 
-    BuildTree(Arr) {
-        // let's start by sorting the array
-        
+    buildTree(arr, start, end) {
+        // sort the array and remove duplicates
+        let arrSorted = this.sortedArr(arr)
+        let uniqueArr = this.removeDuplicates(arrSorted) //
 
-    
-        // sort array
-        // remove duplicate entries
         // Build the tree from the array using Node class 
+        if(start > end){ //base case
+            return null;
+        }
+        let mid = Math.floor((start + end)/2);
+        let node = new Node(uniqueArr[mid])
 
-
+        node.left = this.buildTree(uniqueArr, start, mid - 1)
+        node.right = this.buildTree(uniqueArr,mid + 1, end)
+        return node;
     }
 }
