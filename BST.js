@@ -32,7 +32,11 @@ class Tree{
         return sortedArr;
     }
 
-    
+    // Remove Duplicates from array
+    removeDuplicates(arr) {
+        return Array.from(new Set(arr));
+    }
+
     BuildTree(Arr) {
         // let's start by sorting the array
         
