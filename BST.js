@@ -131,6 +131,23 @@ class Tree{
             }
         }
     } 
+    inOrder(callback) {
+        if (typeof callback !== 'function') {
+            throw new Error("A callback function is required.");
+        }
+        this.inOrderTraversal(this.root, callback);
+    }
+    
+    inOrderTraversal(node, callback) {
+        if (node !== null) {
+            // Traverse the left subtree
+            this.inOrderTraversal(node.left, callback);
+            // Visit the current node
+            callback(node);
+            // Traverse the right subtree
+            this.inOrderTraversal(node.right, callback);
+        }
+    }
 }
 
 // Pretty print function for the binary tree
