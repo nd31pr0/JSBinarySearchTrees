@@ -97,6 +97,22 @@ class Tree{
             root.right = this.deleteNode(root.right, value)
         }
     }
+    find(value) {
+        return this.findNode(this.root, value);
+    }
+    
+    findNode(root, value) {
+        if (root === null) {
+            return null; // Base case: value not found
+        }
+        if (value < root.value) {
+            return this.findNode(root.left, value); // Search in the left subtree
+        } else if (value > root.value) {
+            return this.findNode(root.right, value); // Search in the right subtree
+        } else {
+            return root; // Value found, return the node
+        }
+    }
 }
 
 // Pretty print function for the binary tree
