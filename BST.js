@@ -72,8 +72,31 @@ class Tree{
         // If the value already exists, do nothing (no duplicates)
         return node;
     }
-
-    
+    deleteItem(value){
+        this.root = this.deleteNode(this.root, value)
+    }
+    deleteNode(root, value){
+        if(root===null){
+            return root
+        }
+        // check if value is in left of right side of root node
+        if (value < root.value){
+            root.left =  this.deleteNode(root.left, value)
+        } else if (value > root.value){
+            root.right = this.deleteNode(root.right, value)
+        } else{
+            if(!root.left && !root.right){// we are to delete a leaf node
+                return null
+            }
+            if(!root.right){ // 
+                return root.left
+            } else if(!root.left){ // 
+                return root.right
+            }
+            root.value = this.min(root.right)
+            root.right = this.deleteNode(root.right, value)
+        }
+    }
 }
 
 // Pretty print function for the binary tree
