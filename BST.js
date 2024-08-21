@@ -8,7 +8,10 @@ class Node {
 
 class Tree{
     constructor(arr) {
-        this.root = this.buildTree(arr, 0, arr.length-1);
+        // Preprocess the array in constructor
+        const uniqueSortedArray = this.removeDuplicates(this.sortedArr(arr));
+        console.log(uniqueSortedArray);
+        this.root = this.buildTree(uniqueSortedArray, 0, uniqueSortedArray.length-1);
     }
     
     sortedArr(arr) {
@@ -38,19 +41,15 @@ class Tree{
     }
 
     buildTree(arr, start, end) {
-        // sort the array and remove duplicates
-        let arrSorted = this.sortedArr(arr)
-        let uniqueArr = this.removeDuplicates(arrSorted) //
-
         // Build the tree from the array using Node class 
         if(start > end){ //base case
             return null;
         }
         let mid = Math.floor((start + end)/2);
-        let node = new Node(uniqueArr[mid])
+        let node = new Node(arr[mid])
 
-        node.left = this.buildTree(uniqueArr, start, mid - 1)
-        node.right = this.buildTree(uniqueArr,mid + 1, end)
+        node.left = this.buildTree(arr, start, mid - 1)
+        node.right = this.buildTree(arr, mid + 1, end)
         return node;
     }
     
