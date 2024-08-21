@@ -113,6 +113,24 @@ class Tree{
             return root; // Value found, return the node
         }
     }
+    levelOrder(callback) {
+        if (typeof callback !== 'function') {
+            throw new Error("A callback function is required.");
+        }
+    
+        const queue = [];
+        queue.push(this.root);
+    
+        while (queue.length > 0) {
+            const node = queue.shift(); // Dequeue the front node
+            if (node) {
+                callback(node); // Call the callback with the current node
+                // Enqueue left and right children
+                if (node.left) queue.push(node.left);
+                if (node.right) queue.push(node.right);
+            }
+        }
+    } 
 }
 
 // Pretty print function for the binary tree
