@@ -8,7 +8,7 @@ class Node {
 
 class Tree{
     constructor(arr) {
-        // Preprocess the array in constructor
+        // sort and remove duplicates from array
         const uniqueSortedArray = this.removeDuplicates(this.sortedArr(arr));
         console.log(uniqueSortedArray);
         this.root = this.buildTree(uniqueSortedArray, 0, uniqueSortedArray.length-1);
@@ -52,6 +52,27 @@ class Tree{
         node.right = this.buildTree(arr, mid + 1, end)
         return node;
     }
+
+    insert(value) {
+        this.root = this._insertRec(this.root, value); // Update root after insertion
+    }
+
+    _insertRec(node, value) {
+        // Base case: if the current node is null, create a new node
+        if (node === null) {
+            return new Node(value);
+        }
+
+        // Recursively find the correct position to insert the new value
+        if (value < node.data) {
+            node.left = this._insertRec(node.left, value);
+        } else if (value > node.data) {
+            node.right = this._insertRec(node.right, value);
+        }
+        // If the value already exists, do nothing (no duplicates)
+        return node;
+    }
+
     
 }
 
@@ -72,6 +93,6 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 // Example Usage
 const array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 const tree = new Tree(array);
-
+tree.insert(10)
 // Print the tree structure
 prettyPrint(tree.root);
