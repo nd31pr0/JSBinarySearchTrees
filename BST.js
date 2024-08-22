@@ -211,6 +211,37 @@ class Tree{
     
         return depthCount;
     }
+    isBalanced(node) {
+        if (node === null) {
+            return true; // An empty tree is balanced
+        }
+    
+        // Helper function to calculate height and check balance
+        const checkBalance = (node) => {
+            if (node === null) {
+                return 0; // Height of null node is 0
+            }
+    
+            const leftHeight = checkBalance(node.left);
+            const rightHeight = checkBalance(node.right);
+    
+            // If the subtree is unbalanced, return -1
+            if (leftHeight === -1 || rightHeight === -1) {
+                return -1;
+            }
+    
+            // If the current node is unbalanced, return -1
+            if (Math.abs(leftHeight - rightHeight) > 1) {
+                return -1;
+            }
+    
+            // Return the height of the current node
+            return Math.max(leftHeight, rightHeight) + 1;
+        };
+    
+        // Start the balance check from the root
+        return checkBalance(node) !== -1;
+    }
 }
 
 // Pretty print function for the binary tree
