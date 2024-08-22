@@ -195,6 +195,22 @@ class Tree{
         return Math.max((leftHeight, rightHeight) + 1);
         // the +1 accounts for the edge connecting the root to left and/or right subtree
     }
+    depth(node) {
+        if (node === null) {
+            return -1; // Return -1 for null nodes (no edges)
+        }
+        
+        let current = node;
+        let depthCount = 0;
+    
+        // Traverse up to the root, counting the edges
+        while (current.parent !== null) {
+            depthCount++;
+            current = current.parent; // Move to the parent node
+        }
+    
+        return depthCount;
+    }
 }
 
 // Pretty print function for the binary tree
