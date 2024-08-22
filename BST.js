@@ -148,6 +148,7 @@ class Tree{
             this.inOrderTraversal(node.right, callback);
         }
     }
+    //PreOrder traversal traverses the root, left subtree and then the right subtree
     preOrder(callback) {
         if (typeof callback !== 'function') {
             throw new Error("A callback function is required.");
@@ -163,6 +164,25 @@ class Tree{
             this.preOrderTraversal(node.left, callback);
             // Traverse the right subtree
             this.preOrderTraversal(node.right, callback);
+        }
+    }
+    
+    // in post order, we traverse deepest nodes of left subtree, travers right subtree and then the root
+
+    postOrder(callback) {
+        if (typeof callback !== 'function') {
+            throw new Error("A callback function is required.");
+        }
+        this.postOrderTraversal(this.root, callback);
+    }
+    postOrderTraversal(node, callback) {
+        if (node !== null) {
+            // Traverse the left subtree
+            this.postOrderTraversal(node.left, callback);
+            // Traverse the right subtree
+            this.postOrderTraversal(node.right, callback);
+            // Visit the current node
+            callback(node);
         }
     }
 }
