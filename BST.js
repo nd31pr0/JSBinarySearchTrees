@@ -242,6 +242,41 @@ class Tree{
         // Start the balance check from the root
         return checkBalance(node) !== -1;
     }
+    rebalance() {
+        // We start by Getting a sorted array of values from the BST
+        const sortedValues = this.inOrderTraversal(this.root);
+        
+        // We then build a balanced BST from the sorted array
+        this.root = this.buildBalancedTree(sortedValues);
+    }
+    
+    // Helper function for in-order traversal
+    inOrderTraversal(node) {
+        if (node === null) {
+            return [];
+        }
+        return [
+            ...this.inOrderTraversal(node.left),
+            node.value,
+            ...this.inOrderTraversal(node.right)
+        ];
+    }
+    
+    // Helper function to build a balanced BST from a sorted array
+    buildBalancedTree(sortedArray) {
+        if (sortedArray.length === 0) {
+            return null;
+        }
+        
+        const midIndex = Math.floor(sortedArray.length / 2);
+        const node = new TreeNode(sortedArray[midIndex]);
+    
+        // Recursively build the left and right subtrees
+        node.left = this.buildBalancedTree(sortedArray.slice(0, midIndex));
+        node.right = this.buildBalancedTree(sortedArray.slice(midIndex + 1));
+    
+        return node;
+    }
 }
 
 // Pretty print function for the binary tree
