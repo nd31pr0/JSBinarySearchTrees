@@ -328,6 +328,11 @@ function main() {
     // Check if the tree is balanced after insertion of numbers
     const balancedAfter = bst.isBalanced();
     console.log("Is the tree balanced after unbalancing?", balancedAfter);
+
+    // Rebalance the tree
+    bst.balance();
+    console.log("Tree has been rebalanced.");
+
 }
 main()
 
