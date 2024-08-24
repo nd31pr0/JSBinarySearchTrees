@@ -312,6 +312,9 @@ function main() {
     randomNumbers.forEach(num => bst.insert(num));
 
     console.log("In-order Traversal of the BST:", bst.inOrderTraversal(bst.root));
+    console.log("Pre-order Traversal of the BST:", bst.preOrderTraversal(bst.root));
+    console.log("Post-order Traversal of the BST:", bst.postOrderTraversal(bst.root));
+    console.log("Level-order Traversal of the BST:", bst.levelOrderTraversal());
 
     // Check if the tree is balanced
     const balanced = bst.isBalanced();
