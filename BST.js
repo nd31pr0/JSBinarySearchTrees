@@ -333,6 +333,9 @@ function main() {
     bst.balance();
     console.log("Tree has been rebalanced.");
 
+    const rebalanced =bst.isBalanced()
+    console.log("Is the new tree balanced?", rebalanced)
+
 }
 main()
 
