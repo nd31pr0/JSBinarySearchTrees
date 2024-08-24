@@ -319,6 +319,11 @@ function main() {
     // Check if the tree is balanced
     const balanced = bst.isBalanced();
     console.log("Is the tree balanced?", balanced);
+
+    // Unbalance the tree by adding several numbers > 100
+    const unbalancedNumbers = [101, 102, 103, 104, 105, 106];
+    console.log("Adding numbers to unbalance the tree (> 100):", unbalancedNumbers);
+    unbalancedNumbers.forEach(num => bst.insert(num));
 }
 main()
 
