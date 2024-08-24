@@ -277,6 +277,7 @@ class Tree{
     
         return node;
     }
+    
 }
 
 // Pretty print function for the binary tree
@@ -292,6 +293,15 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
         prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
     }
 };
+
+// Function to generate an array of random numbers
+function generateRandomNumbers(count, max) {
+    const numbers = new Set();
+    while (numbers.size < count) {
+        numbers.add(Math.floor(Math.random() * max));
+    }
+    return Array.from(numbers);
+}
 
 // Example Usage
 const array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
