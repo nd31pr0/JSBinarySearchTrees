@@ -303,6 +303,18 @@ function generateRandomNumbers(count, max) {
     return Array.from(numbers);
 }
 
+// Driver script
+function main() {
+    const randomNumbers = generateRandomNumbers(10, 100); // Generate 10 random numbers < 100
+    console.log("Random Numbers:", randomNumbers);
+
+    const bst = new BST();
+    randomNumbers.forEach(num => bst.insert(num));
+
+    console.log("In-order Traversal of the BST:", bst.inOrderTraversal(bst.root));
+}
+main()
+
 // Example Usage
 const array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 const tree = new Tree(array);
